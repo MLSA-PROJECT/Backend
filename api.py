@@ -1,5 +1,7 @@
 import joblib
 from flask import Flask
+from flask import request
+
 app = Flask(__name__)
 
 # loading the models
@@ -7,8 +9,10 @@ diabetes_model = joblib.load("diabetes_model.sav")
 heart_model = joblib.load("heart_model.sav")
 parkinsons_model = joblib.load("parkinsons_model.sav")
 
-@app.route("/api/diabetes")
+@app.route("/api/diabetes", methods=['GET', 'POST'])
 def diabetes_predict():
+    data = request.data
+
     # input parameters
     # number of pregnancies
     # glucose level
@@ -22,14 +26,14 @@ def diabetes_predict():
     res = diabetes_model.predict()
     return res
 
-@app.route("/api/heart")
+@app.route("/api/heart", methods=['GET', 'POST'])
 def diabetes_predict():
     # input parameters
 
     res = heart_model.predict()
     return res
 
-@app.route("/api/parkinsons")
+@app.route("/api/parkinsons", methods=['GET', 'POST'])
 def diabetes_predict():
     # input parameters
 
