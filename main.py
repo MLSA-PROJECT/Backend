@@ -2,25 +2,14 @@ import pickle
 import pandas as pd
 import numpy as np
 
- 
-
 #loading the models
 diabetes = read_csv(open("diabetes.csv"))
 heart_disease = read_csv(open("heart.csv"))
 lung_cancer = read_csv(open("lung_cancer.csv"))
 
- 
-
- 
-
 #sidebar for navigation
-
- 
-
 with st.sidebar:
-
     selected = option_menu("Multiple Disease Prediction System using Machine Learning", 
-
                            ["Diabetes Prediction",
                             "Heart Disese Prediction",
                             "Kidney Disease Prediction",
@@ -31,28 +20,13 @@ with st.sidebar:
 
                            default_index = 0)
 
- 
-
- 
-
- 
-
- 
-
-
 #Diabetes Prediction Page:
 if(selected == "Diabetes Prediction"):
-
     #page title
     st.title("Diabetes Prediction")
 
-
-
- 
-
 # getting the input data from the user
     col1, col2, col3 = st.columns(3)
-
     with col1:
         Pregnancies = st.text_input("Number of Pregnancies")
 
@@ -77,14 +51,9 @@ if(selected == "Diabetes Prediction"):
     with col2:
         Age = st.text_input("Age of the Person")
 
- 
-
-
 # code for Prediction
     diabetes_diagnosis = " "
-
     # creating a button for Prediction
-
     if st.button("Diabetes Test Result"):
         diabetes_prediction = diabetes.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
 
@@ -95,19 +64,10 @@ if(selected == "Diabetes Prediction"):
 
     st.success(diabetes_diagnosis)
 
- 
-
- 
-
- 
-
 #Heart Disease Prediction Page:
 if(selected == "Heart Disese Prediction"):
-
     #page title
     st.title("Heart Disease Prediction")
-
-
 
 # getting the input data from the user
     col1, col2, col3 = st.columns(3)
@@ -151,12 +111,8 @@ if(selected == "Heart Disese Prediction"):
     with col1:
         thal = st.number_input("thal: 0 = normal; 1 = fixed defect; 2 = reversable defect")
 
-
-
-
     # code for Prediction
     heart_diagnosis = " "
-
     # creating a button for Prediction
 
     if st.button('Heart Disease Test Result'):
@@ -169,22 +125,11 @@ if(selected == "Heart Disese Prediction"):
 
     st.success(heart_diagnosis)
 
-
- 
-
- 
-
- 
-
-
 #Lung Cancer Prediction Page:
 if(selected == "Lung Cancer Prediction"):
     #page title
     st.title("Lung Cancer Prediction")
 
- 
-
- 
 
 # getting the input data from the user
     col1, col2, col3, col4 = st.columns(4)
@@ -235,9 +180,6 @@ if(selected == "Lung Cancer Prediction"):
         CHEST_PAIN = st.number_input("CHEST PAIN")
 
 
- 
-
-
 # code for Prediction
     lung_cancer_result = " "
 
@@ -251,4 +193,3 @@ if(selected == "Lung Cancer Prediction"):
           lung_cancer_result = "Sorry! You have Lung Cancer."
 
     st.success(lung_cancer_result)
-    
