@@ -3,9 +3,9 @@ import pandas as pd
 import numpy as np
 
 #loading the models
-diabetes = read_csv(open("diabetes.csv"))
-heart_disease = read_csv(open("heart.csv"))
-lung_cancer = read_csv(open("lung_cancer.csv"))
+diabetes = pd.read_csv(open("diabetes.csv"))
+heart_disease = pd.read_csv(open("heart.csv"))
+lung_cancer = pd.read_csv(open("lung_cancer.csv"))
 
 #sidebar for navigation
 with st.sidebar:
