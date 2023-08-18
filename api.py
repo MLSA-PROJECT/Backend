@@ -2,7 +2,11 @@ import joblib
 from flask import Flask
 from flask import request
 import json
+from flask_cors import CORS, cross_origin
+
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # loading the models
 diabetes_model = joblib.load("diabetes_model.sav")
@@ -10,6 +14,7 @@ heart_model = joblib.load("heart_disease_model.sav")
 parkinsons_model = joblib.load("parkinsons_model.sav")
 
 @app.route("/api/diabetes", methods=['GET', 'POST'])
+@cross_origin()
 def diabetes_predict():
     data = request.data
 
@@ -37,6 +42,7 @@ def diabetes_predict():
     return res
 
 @app.route("/api/heart", methods=['GET', 'POST'])
+@cross_origin()
 def heart_predict():
     # input parameters
 
@@ -44,6 +50,7 @@ def heart_predict():
     return res
 
 @app.route("/api/parkinsons", methods=['GET', 'POST'])
+@cross_origin()
 def parkinsons_predict():
     # input parameters
 
@@ -51,6 +58,7 @@ def parkinsons_predict():
     return res
 
 @app.route("/api")
+@cross_origin()
 def predict():
     """Call the model and get the desired output"""
     res = "Hello world"
