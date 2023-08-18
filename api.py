@@ -17,8 +17,6 @@ parkinsons_model = joblib.load("parkinsons_model.sav")
 @cross_origin()
 def diabetes_predict():
     data = request.data
-
-    # parse x:
     data = json.loads(data)
 
     # input parameters
@@ -44,6 +42,9 @@ def diabetes_predict():
 @app.route("/api/heart", methods=['GET', 'POST'])
 @cross_origin()
 def heart_predict():
+    data = request.data
+    data = json.loads(data)
+
     # input parameters
 
     res = heart_model.predict()
@@ -52,6 +53,9 @@ def heart_predict():
 @app.route("/api/parkinsons", methods=['GET', 'POST'])
 @cross_origin()
 def parkinsons_predict():
+    data = request.data
+    data = json.loads(data)
+
     # input parameters
 
     res = parkinsons_model.predict()
@@ -60,9 +64,7 @@ def parkinsons_predict():
 @app.route("/api")
 @cross_origin()
 def predict():
-    """Call the model and get the desired output"""
-    res = "Hello world"
-    return res
+    return "Hello world"
 
 if __name__ == "__main__":
     app.run(debug=True)
